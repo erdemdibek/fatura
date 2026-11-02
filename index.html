@@ -32,9 +32,9 @@
   <div class="card">
     <h1>Doğalgaz Tahmini</h1>
     <label>Son faturadaki endeks (m³)</label>
-    <input type="number" id="onceki" inputmode="decimal" step="any" placeholder="örn. 7452">
+    <input type="number" id="onceki" inputmode="decimal" step="any" placeholder="örn. 4683">
     <label>Şu an sayaçta gördüğün (m³)</label>
-    <input type="number" id="guncel" inputmode="decimal" step="any" placeholder="örn. 7470">
+    <input type="number" id="guncel" inputmode="decimal" step="any" placeholder="örn. 4802">
   </div>
 
   <div class="card" id="sonuc"></div>
@@ -43,15 +43,15 @@
 </div>
 
 <script>
-/* Tarife (KDV dahil, TL/Sm3). Değişirse sadece burayı güncelle. */
+/* Tarife (KDV dahil, TL/Sm3). Faturanıza göre güncellendi. */
 const TARIFE = {
-  guncelleme: "2026-10-25",
-  isilDeger: 10.64,     // kWh / Sm3
-  katsayi: 1.02,        // m3 -> Sm3 (faturalarda 1,012 - 1,034 arası çıktı)
+  guncelleme: "2026-11-02",
+  isilDeger: 11.0048,    // kWh / Sm3 (Faturadaki değer)
+  katsayi: 1.04315,     // m3 -> Sm3 (124,135 / 119 oranından türetildi)
   aylikLimit: 39.88,    // Kırklareli aylık Kademe-1 limiti (Sm3)
-  brut: 39.56,          // desteksiz fiyat (faturadan çıkarım: tüketim bedeli / düzeltilmiş hacim)
-  k1: 16.908506,        // Kademe-1 net fiyatı (destek düşülmüş)
-  k2: 25.758506         // Kademe-2 net fiyatı (destek düşülmüş)
+  brut: 48.09,          // Desteksiz birim fiyat (5969.88 / 124.135)
+  k1: 16.908506,        // Kademe-1 net fiyatı
+  k2: 25.758506         // Kademe-2 net fiyatı
 };
 
 const $ = id => document.getElementById(id);
